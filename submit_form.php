@@ -1,8 +1,5 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Debug: Log received POST data
-    error_log(print_r($_POST, true));
-
     $name = strip_tags(trim($_POST["name"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
     $age = intval(trim($_POST["age"]));
@@ -40,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         http_response_code(500);
         echo "Oops! Something went wrong and we couldn't send your message.";
     }
-
 } else {
-    http_response_code(403);
-    echo "There was a problem with your submission, please try again.";
+    http_response_code(405);
+    echo "Method Not Allowed";
 }
 ?>
