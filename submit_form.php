@@ -1,5 +1,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Debug: Log received POST data
+    error_log(print_r($_POST, true));
+
     $name = strip_tags(trim($_POST["name"]));
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
     $age = intval(trim($_POST["age"]));
